@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xmlns:mvc="http://www.springframework.org/schema/mvc"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+       http://www.springframework.org/schema/beans/spring-beans.xsd
+       http://www.springframework.org/schema/context
+       http://www.springframework.org/schema/context/spring-context.xsd
+       http://www.springframework.org/schema/mvc
+       http://www.springframework.org/schema/mvc/spring-mvc.xsd">
+    <!--扫描控制器-->
+    <context:component-scan base-package="com.ncu.bbs.controller"/>
+    <context:component-scan base-package="com.ncu.bbs.dao"/>
+    <context:component-scan base-package="com.ncu.bbs.pojo"/>
+    <context:component-scan base-package="com.ncu.bbs.service"/>
+    <!--开启注解-->
+    <mvc:annotation-driven/>
+    <!--静态资源访问-->
+    <mvc:default-servlet-handler/>
+    <mvc:resources mapping="/resources/**" location="/WEB-INF/resources/"/>
+    <!--页面控制器-->
+
+    <!--    声明拦截器：拦截器可以有0或多个-->
+    <mvc:interceptors>
+        <!--        声明第一个拦截器-->
+        <mvc:interceptor>
+            <!--            path：指定拦截的请求uri地址，可以使用通配符 **
+                                **：表示任意的字符，文件或者多级目录和目录中的文件
+                            localhost：8080/myWeb/user/addUser
+                            /user/**:  代表/user/下的多有路径都拦截
+            -->
+            <mvc:mapping path="/**"/>
+            <!--            声明拦截器对象-->
+            <bean class="com.ncu.bbs.interceptor.TokenInterceptor"/>
+        </mvc:interceptor>
+    </mvc:interceptors>
+
+
+    <bean class="org.springframework.web.servlet.view.InternalResourceViewResolver" id="internalResourceViewResolver">
+        <property name="ViewClass" value="org.springframework.web.servlet.view.JstlView"/>
+        <property name="prefix" value="/WEB-INF/pages/"/>
+        <property name="suffix" value=".jsp"/>
+    </bean>
+</beans>

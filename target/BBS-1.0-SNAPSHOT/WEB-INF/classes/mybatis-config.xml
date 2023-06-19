@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE configuration PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-config.dtd">
+
+<configuration>
+    <typeAliases>
+        <typeAlias alias="User" type="com.ncu.bbs.pojo.User"/>
+        <typeAlias alias="Board" type="com.ncu.bbs.pojo.Board"/>
+        <typeAlias alias="UserLoginLog" type="com.ncu.bbs.pojo.UserLoginLog"/>
+        <typeAlias alias="Post" type="com.ncu.bbs.pojo.Post"/>
+        <typeAlias alias="Reply" type="com.ncu.bbs.pojo.Reply"/>
+    </typeAliases>
+</configuration>
